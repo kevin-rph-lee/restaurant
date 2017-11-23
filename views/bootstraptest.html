@@ -31,6 +31,14 @@
 
     <div class="page-header">
     <h1>Responsive Restaurant</h1>
+    <div class="input-group margin-bottom-sm">
+    <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+    <input class="form-control name" type="text" placeholder="Name">
+    </div>
+    <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+    <input class="form-control phone-number" type="text" placeholder="Phone number">
+    </div>
     </div>
 <!--     <style>
      body {
@@ -41,34 +49,95 @@
       <p>
 
       <div class="container">
+
       <div class="row">
         <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
           <div class="thumbnail">
-            <img src="thumb1.png" alt="...">
+            <img src="image.png" alt="...">
             <div class="caption">
               <h3>HAMBURGER</h3>
               <p>Best burger in town!</p>
-              <p><a href="#" class="btn btn-primary" role="button">Add to Cart</a></p>
+              <div class="container">
+
+                <div class="row">
+                <div class="col-lg-2">
+                  <div class="input-group">
+              <span class="input-group-btn">
+                  <button type="button" class="quantity-left-minus btn btn-danger btn-number burgerRemove"  data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+              </span>
+
+              <input type="text" id="burger_quantity" name="quantity" class="form-control input-number" value="10" min="1" max="100">
+              <span class="input-group-btn">
+                  <button type="button" class="quantity-right-plus btn btn-success btn-number burgerAdd" data-type="plus" data-field="">
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+              </span>
+          </div>
+                </div>
+                </div>
+              </div>
             </div>
             </div>
         </div>
+
         <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
           <div class="thumbnail">
             <img src="thumb2.png" alt="...">
             <div class="caption">
               <h3>FRIES</h3>
               <p>Chewy, yummy, best fries!</p>
-              <p><a href="#" class="btn btn-primary" role="button">Add to Cart</a></p>
+              <div class="container">
+
+                <div class="row">
+                <div class="col-lg-2">
+                  <div class="input-group">
+              <span class="input-group-btn">
+                  <button type="button" class="quantity-left-minus btn btn-danger btn-number friesRemove"  data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+              </span>
+              <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10" min="1" max="100">
+              <span class="input-group-btn">
+                  <button type="button" class="quantity-right-plus btn btn-success btn-number friesAdd" data-type="plus" data-field="">
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+              </span>
+          </div>
+                </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
         <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
           <div class="thumbnail">
             <img src="thumb3.png" alt="...">
             <div class="caption">
               <h3>SHAKES</h3>
               <p>Yummmmmy!</p>
-              <p><a href="#" class="btn btn-primary" role="button">Add to Cart</a></p>
+              <div class="container">
+
+                <div class="row">
+                <div class="col-lg-2">
+                  <div class="input-group">
+              <span class="input-group-btn">
+                  <button type="button" class="quantity-left-minus btn btn-danger btn-number shakesRemove"  data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                  </button>
+              </span>
+              <input type="text" id="quantity" name="quantity" class="form-control input-number" value="10" min="1" max="100">
+              <span class="input-group-btn">
+                  <button type="button" class="quantity-right-plus btn btn-success btn-number shakesAdd" data-type="plus" data-field="">
+                      <span class="glyphicon glyphicon-plus"></span>
+                  </button>
+              </span>
+          </div>
+                </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
