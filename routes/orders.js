@@ -3,6 +3,12 @@
 const express = require('express');
 const router  = express.Router();
 
+
+var twilio = require('twilio');
+var client = require('twilio')('AC0945be5576dc3b770424a16a6ac748e7', '73304938e2cff076c3f2c4342b1aa6ba');
+const MessagingResponse = twilio.twiml.MessagingResponse;
+
+
 module.exports = (knex) => {
 
 
@@ -16,10 +22,6 @@ module.exports = (knex) => {
     });
   });
 
-
-  router.get("/history/:id", (req, res) => {
-    res.redirect();
-  });
 
   router.get("/", (req, res) => {
     knex
@@ -36,34 +38,51 @@ module.exports = (knex) => {
     //untested
   router.post("/", (req, res) => {
     console.log('Getting post request...');
+    //Getting user ID
+    const userID = knex.select("id").from("users")where('email', req.params.email);
 
     knex
-      .insert({user_id: 1})
+      .insert({userID})
       .into("orders")
       .returning('id')
-      .then((id) => {
-        console.log(id);
-        res.end()})
+      .then(order_id => {
+        // const burger_promise = (num_burgers_ordered > 0 ?
+        //   knex.insert({}).into('ordered_items') :     //...... finish this
+        //   undefined);
+        // const shake_promise = knex.insert({}).into('ordered_items'); //...... finish this
+        // burger-inserting code
+        // shake-inserting code
+        // fries-inserting code
+        // Promise.all([order_id, burger_promise, shake_promise])
+        return order_id;
+      })
+      .then((result) => {
+        let [order_id, burger, shake] = result;
+        console.log("order_id we'll give to SMS: ", typeof id, JSON.stringify(order_id));
+        client.messages.create({
+          from: '+16046708224',
+          to: '+17789388262',
+          body: "Your order ID # is: " + order_id
+        })
+
+        res.json(order_id);
+      })
       .catch(error => {
         res.status(500).json({ message: error.message });
       });
   });
 
-//midterm=# SELECT orders.id, ordered_items.paid_price, menu_items.name, ordered_items.quantity FROM orders JOIN ordered_items ON order_id = orders.id JOIN menu_items ON menu_item_id = menu_items.id WHERE orders.id =1;
 
+  router.post("/SMS", (req, res) => {
+    console.log('Recieving SMS message');
+    const twiml = new MessagingResponse();
+    const body = req.body['Body'].split(' ')
+    console.log("ID: " + body[0] + " Time: " + body[1]);
+    twiml.message('Testing');
+    res.writeHead(200, {'Content-Type': 'text/xml'});
+    res.end(twiml.toString());
+  });
 
-  //untested
-  // router.post("/", (req, res) => {
-  //   console.log('Getting post request...');
-
-  //   knex
-  //     .insert({phone_number: req.body.phone, firstName: req.body.firstName, last_name: req.body.firstName, email: req.body.email})
-  //     .into("users")
-  //     .then(()=>res.end())
-  //     .catch(error => {
-  //       res.status(500).json({ message: error.message });
-  //     });
-  // });
 
   return router;
 }
