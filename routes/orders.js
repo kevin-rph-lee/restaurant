@@ -16,6 +16,11 @@ module.exports = (knex) => {
     });
   });
 
+
+  router.get("/history/:id", (req, res) => {
+    res.redirect();
+  });
+
   router.get("/", (req, res) => {
     knex
       .select("orders.id", "ordered_items.quantity", "ordered_items.paid_price", "menu_items.name")
