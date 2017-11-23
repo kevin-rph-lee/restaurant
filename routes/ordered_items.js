@@ -6,11 +6,11 @@ const router  = express.Router();
 module.exports = (knex) => {
 
 
-  router.get("/:email", (req, res) => {
+  router.get("/:id", (req, res) => {
     knex
       .select("*")
-      .from("users")
-      .where('email', req.params.email)
+      .from("ordered_items")
+      .where('id', req.params.id)
       .then((results) => {
         res.json(results);
     });
@@ -19,7 +19,7 @@ module.exports = (knex) => {
   router.get("/", (req, res) => {
     knex
       .select("*")
-      .from("users")
+      .from("ordered_items")
       .then((results) => {
         res.json(results);
     });
@@ -31,7 +31,7 @@ module.exports = (knex) => {
     console.log('Getting post request...');
 
     knex
-      .insert({phone_number: '911', first_name: 'test1', last_name: 'test2', email: 'test@test.com'})
+      .insert({order_id: 1, menu_item_id: 1, quantity: 3, paid_price: 500})
       .into("users")
       .returning('id')
       .then((id) => {
