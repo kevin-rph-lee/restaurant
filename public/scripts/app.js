@@ -102,7 +102,7 @@ $(() => {
 */   $('.submit-order').on('click', function(event) {
        $.ajax({
         method: "POST",
-        url: "/users/test",
+        url: "/orders/",
         data: {'burgers': $('#burger_quantity').val(),
                'fries': $('#fries_quantity').val(),
                'shakes': $('#shakes_quantity').val()

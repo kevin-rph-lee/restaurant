@@ -3,7 +3,8 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       return Promise.all([
        knex('menu_items').insert({id: 1, name: 'Hamburger', price: 500}),
-       knex('menu_items').insert({id: 2, name: 'Fries', price: 300})
+       knex('menu_items').insert({id: 2, name: 'Fries', price: 300}),
+       knex('menu_items').insert({id: 3, name: 'Shakes', price: 300}),
       ]);
     });
 };
