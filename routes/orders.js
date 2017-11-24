@@ -23,7 +23,10 @@ module.exports = (knex) => {
   });
 
   router.get("/time/:id", (req, res) => {
-    res.render('time', {
+    res.render('time',  {
+      // knex db query
+      // if wait time 20 min // id number order id
+/*      knex.select("wait_time").from("orders").where({})*/
     });
   });
 

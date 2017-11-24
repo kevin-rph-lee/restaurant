@@ -100,11 +100,6 @@ $(() => {
        order_id:req.params.id
       }
 */   $('.submit-order').on('click', function(event) {
-            console.log($('#burger_quantity').val());
-            console.log($('#fries_quantity').val());
-            console.log($('#shakes_quantity').val());
-
-
        $.ajax({
         method: "POST",
         url: "/users/test",
@@ -113,7 +108,12 @@ $(() => {
                'shakes': $('#shakes_quantity').val()
               }
         })
+       $('#burger_quantity').val('0');
+       $('#fries_quantity').val('0');
+       $('#shakes_quantity').val('0');
+
     })
+
    });
 
 
