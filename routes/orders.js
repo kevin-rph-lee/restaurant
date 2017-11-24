@@ -23,12 +23,16 @@ module.exports = (knex) => {
   });
 
   router.get("/time/:id", (req, res) => {
-    res.render('time',  {
+      knex.select("*")
+          .from("orders")
+          // .outerJoin('ordered_items', 'orders.id', 'ordered_items.order_id')
+          .then((result) => {
+            res.render('time');
+          });
       // knex db query
       // if wait time 20 min // id number order id
 /*      knex.select("wait_time").from("orders").where({})*/
     });
-  });
 
 
 
