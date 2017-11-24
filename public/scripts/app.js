@@ -15,7 +15,7 @@ $(() => {
 
     });
 
-     $('.burgerRemove').click(function(e){
+     $('.burgurRemove').click(function(e){
         // Stop acting like a button
         e.preventDefault();
         // Get the field name
@@ -88,24 +88,31 @@ $(() => {
             $('#shakes_quantity').val(quantity - 1);
             }
     });
+   /*  $.ajax({
+       url: '/orders',
+       method: 'POST',
+       data: $(this).serialize()
+       success: function(data) {
+       time: req.params.time,
+       user_id: req.params.user_id,
+       order_id:req.params.id
+      }
+*/   $('.submit-order').on('click', function(event) {
+            console.log($('#burger_quantity').val());
+            console.log($('#fries_quantity').val());
+            console.log($('#shakes_quantity').val());
+        })
+    /*   $.ajax({
+        method: "POST",
+        url: "/orders",
+        data: {'user_id': req.session.user_id,
 
-    // $.post('/tweets', $form.serialize())
-    //   .success(() => {
-    //     loadTweets();
-    //     $textArea.val('');
-    //   })
-    //   .error(data => alert('ERROR talking to server!  Help!'));
-    // };
+              }
+        success: function(data) {
+            $(.'burgerAdd')
+}
+*/
+        });
 
 
-    // $.ajax({
-    //     url: '/orders',
-    //     method: 'POST',
-    //     data: {},
-    //     success: function () {
-    //         console.log('It will take: ', )
-    //     }
 
-    //   })
-
-});
