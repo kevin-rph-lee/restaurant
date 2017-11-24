@@ -103,19 +103,18 @@ $(() => {
             console.log($('#burger_quantity').val());
             console.log($('#fries_quantity').val());
             console.log($('#shakes_quantity').val());
-            c
-        })
-    /*   $.ajax({
+
+
+       $.ajax({
         method: "POST",
         url: "/users/test",
-        data: {'burgers': 3, shakes, phonenumber:
-
+        data: {'burgers': $('#burger_quantity').val(),
+               'fries': $('#fries_quantity').val(),
+               'shakes': $('#shakes_quantity').val()
               }
-        success: function(data) {
-          console.log('ajex reuest succesful!')
-}
-*/
-        });
+        })
+    })
+   });
 
 
 
