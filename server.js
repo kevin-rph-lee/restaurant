@@ -55,6 +55,13 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+if(ENV === 'development') {
+  app.get("/login/:id", (request, response) => {
+    request.session.user_id = request.params.id
+    response.redirect("/")
+  })
+}
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });

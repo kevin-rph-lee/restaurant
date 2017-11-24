@@ -39,10 +39,10 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     console.log('Getting post request...');
     //Getting user ID
-    const userID = knex.select("id").from("users")where('email', req.params.email);
+    // const userID = knex.select("id").from("users").where('email', req.params.email);
 
     knex
-      .insert({userID})
+      .insert({user_id: 1})
       .into("orders")
       .returning('id')
       .then(order_id => {
@@ -63,8 +63,9 @@ module.exports = (knex) => {
           from: '+16046708224',
           to: '+17789388262',
           body: "Your order ID # is: " + order_id
+        }, (error, message) => {
+          console.log(message);
         })
-
         res.json(order_id);
       })
       .catch(error => {
