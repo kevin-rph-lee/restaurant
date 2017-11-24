@@ -15,7 +15,7 @@ $(() => {
 
     });
 
-     $('.burgurRemove').click(function(e){
+     $('.burgerRemove').click(function(e){
         // Stop acting like a button
         e.preventDefault();
         // Get the field name
@@ -88,5 +88,24 @@ $(() => {
             $('#shakes_quantity').val(quantity - 1);
             }
     });
+
+    // $.post('/tweets', $form.serialize())
+    //   .success(() => {
+    //     loadTweets();
+    //     $textArea.val('');
+    //   })
+    //   .error(data => alert('ERROR talking to server!  Help!'));
+    // };
+
+
+    // $.ajax({
+    //     url: '/orders',
+    //     method: 'POST',
+    //     data: {},
+    //     success: function () {
+    //         console.log('It will take: ', )
+    //     }
+
+    //   })
 
 });

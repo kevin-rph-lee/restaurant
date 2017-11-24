@@ -1,11 +1,18 @@
 body {
   background-color: #EEE;
 
-  h1 {
+  h3 {
     color: #244751;
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
   }
 }
 
 .submit-order {
-  margin: auto
+  display: block;
+  margin: 0 auto;
+  text-align: center;
 }
