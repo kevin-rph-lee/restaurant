@@ -1,3 +1,5 @@
+
+
 $(() => {
    $('.burgerAdd').click(function(e){
 
@@ -5,7 +7,7 @@ $(() => {
         e.preventDefault();
         // Get the field name
         var quantity = parseInt($('#burger_quantity').val());
-         console.log(quantity);
+        // console.log(quantity);
         // If is not undefined
 
             $('#burger_quantity').val(quantity + 1);
@@ -35,7 +37,7 @@ $(() => {
         e.preventDefault();
         // Get the field name
         var quantity = parseInt($('#fries_quantity').val());
-         console.log(quantity);
+         //console.log(quantity);
         // If is not undefined
 
             $('#fries_quantity').val(quantity + 1);
@@ -65,7 +67,7 @@ $(() => {
         e.preventDefault();
         // Get the field name
         var quantity = parseInt($('#shakes_quantity').val());
-         console.log(quantity);
+         //console.log(quantity);
         // If is not undefined
 
             $('#shakes_quantity').val(quantity + 1);
@@ -101,15 +103,16 @@ $(() => {
             console.log($('#burger_quantity').val());
             console.log($('#fries_quantity').val());
             console.log($('#shakes_quantity').val());
+            c
         })
     /*   $.ajax({
         method: "POST",
-        url: "/orders",
-        data: {'user_id': req.session.user_id,
+        url: "/users/test",
+        data: {'burgers': 3, shakes, phonenumber:
 
               }
         success: function(data) {
-            $(.'burgerAdd')
+          console.log('ajex reuest succesful!')
 }
 */
         });

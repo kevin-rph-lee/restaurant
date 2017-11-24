@@ -26,6 +26,14 @@ module.exports = (knex) => {
   });
 
 
+  router.post("/test", (req, res) => {
+    console.log("burgers: " + req.body.burgers);
+    console.log('fries: ' + req.body.fries);
+    console.log('shakes: ' + req.body.shakes);
+  });
+
+
+
   //untested
   router.post("/", (req, res) => {
     console.log('Getting post request...');
