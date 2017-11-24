@@ -2,17 +2,18 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
+const cookieSession = require('cookie-session');
 
 var twilio = require('twilio');
 var client = require('twilio')('AC0945be5576dc3b770424a16a6ac748e7', '73304938e2cff076c3f2c4342b1aa6ba');
@@ -55,12 +56,28 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
+
 if(ENV === 'development') {
   app.get("/login/:id", (request, response) => {
-    request.session.user_id = request.params.id
+    request.session.user_id = request.params.id;
     response.redirect("/")
   })
 }
+
+if(ENV === 'development') {
+  app.get("/logout", (request, response) => {
+    request.session.user_id = null;
+    response.redirect("/")
+  })
+}
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);

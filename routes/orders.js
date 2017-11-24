@@ -22,6 +22,12 @@ module.exports = (knex) => {
     });
   });
 
+  router.get("/time/:id", (req, res) => {
+    res.render('time', {
+    });
+  });
+
+
 
   router.get("/", (req, res) => {
     knex
@@ -33,6 +39,7 @@ module.exports = (knex) => {
         res.json(results);
     });
   });
+
 
 
     //untested
