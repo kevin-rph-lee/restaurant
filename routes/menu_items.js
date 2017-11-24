@@ -25,22 +25,5 @@ module.exports = (knex) => {
     });
   });
 
-
-  //untested
-  // router.post("/", (req, res) => {
-  //   console.log('Getting post request...');
-
-  //   knex
-  //     .insert({order_id: 1, menu_item_id: 1, quantity: 3, paid_price: 500})
-  //     .into("users")
-  //     .returning('id')
-  //     .then((id) => {
-  //       console.log(id);
-  //       res.end()})
-  //     .catch(error => {
-  //       res.status(500).json({ message: error.message });
-  //     });
-  // });
-
   return router;
 }
