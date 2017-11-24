@@ -5,7 +5,7 @@ const router  = express.Router();
 
 
 var twilio = require('twilio');
-var client = require('twilio')('AC0945be5576dc3b770424a16a6ac748e7', '73304938e2cff076c3f2c4342b1aa6ba');
+var client = require('twilio')('ACd653fcd7492c6b800652c1d0e52f8bc2', 'be46e5d7feca518f58e24777507cdeea');
 const MessagingResponse = twilio.twiml.MessagingResponse;
 
 
@@ -116,7 +116,12 @@ module.exports = (knex) => {
     const twiml = new MessagingResponse();
     const body = req.body['Body'].split(' ')
     console.log("ID: " + body[0] + " Time: " + body[1]);
-    twiml.message('Testing');
+    knex('orders')
+      .where('id', body[0])
+      .update({
+        wait_time: Number(body[1])
+      }).then(()=>{});
+    twiml.message('Message recieved');
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
   });
