@@ -21,10 +21,11 @@ module.exports = (knex) => {
       .select("*")
       .from("orders")
       .where('id', req.params.id)
-      .then((results) => {
-        res.render("orderinfo", {order : results}});
-
+      .then((result) => {
+        res.render("orderinfo", {order : result});
+      // res.json(results);
     });
+
   });
 
   router.get("/info/:id", (req, res) => {
@@ -34,7 +35,7 @@ module.exports = (knex) => {
           .innerJoin('ordered_items', 'orders.id', 'ordered_items.order_id')
           .innerJoin('menu_items', 'menu_item_id', "menu_items.id")
           .then((result) => {
-            res.json(result);
+            res.render("orderinfo", {order : result});
           });
     });
 
