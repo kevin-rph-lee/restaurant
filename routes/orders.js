@@ -11,6 +11,12 @@ const twilioNumber = '+16046708301';
 
 module.exports = (knex) => {
 
+
+  /**
+   * Sends a text message
+   * @param  {[String]} to      Phone # that the SMS is going to
+   * @param  {[String]} message Message body
+   */
   function sendSMS(to, message){
     client.messages.create({
       from: twilioNumber,
@@ -113,57 +119,62 @@ module.exports = (knex) => {
     const waitTime = body[1];
     let message = 'Default message';
 
-    knex.select('id')
-      .from('orders')
-      .then((result) => {
-
-      });
 
 
-
-
-    if(body[1] === undefined){
+    //Checking message format
+    if( (body[1] === undefined) || (isNaN(body[0])) ){
       sendSMS(restaurantNumber, 'Incorrect message format: please send messages like <ORDER ID> <Wait time/Ready>');
-    } else if
-
-    } else if (waitTime === 'ready'){
-      message = `Your order: ${orderID} is ready to pickup.`;
-      console.log('Message is: ', message);
-      knex('orders')
-        .where('id', orderID)
-        .update({wait_time: 0})
-        .then(()=>{
-          knex.select('phone_number')
-            .from('users')
-            .where('orders.id', orderID)
-            .innerJoin('orders', 'users.id', 'orders.user_id')
-            .then((result) => {
-              const customerPhoneNumber = '+' + result[0]['phone_number'];
-              console.log('Phone number ' + customerPhoneNumber);
-              sendSMS(customerPhoneNumber, message);
-            });
-        });
-    } else {
-      message = `order id: ${orderID}, new approx. wait time: ${waitTime} minutes`;
-      console.log('Message is: ', message);
-      knex('orders')
-        .where('id', orderID)
-        .update({wait_time: Number(waitTime)})
-        .then(()=>{
-          knex.select('phone_number')
-            .from('users')
-            .where('orders.id', orderID)
-            .innerJoin('orders', 'users.id', 'orders.user_id')
-            .then((result) => {
-              const customerPhoneNumber = '+' + result[0]['phone_number'];
-              console.log('Phone number ' + customerPhoneNumber);
-              sendSMS(customerPhoneNumber, message);
-            });
-        });
-      // twiml.message('Message recieved');
-      // res.writeHead(200, {'Content-Type': 'text/xml'});
-      res.sendStatus(200);
+      return;
     }
+
+    knex
+      .select('*')
+      .where({id: Number(orderID)})
+      .from('orders')
+      .then((result) =>{
+        console.log("Result: ", result);
+        if(result.length === 0){
+          sendSMS(restaurantNumber, 'Error: Order does not exist');
+        } else if (waitTime === 'ready'){
+          message = `Your order: ${orderID} is ready to pickup.`;
+          console.log('Message is: ', message);
+          knex('orders')
+            .where('id', orderID)
+            .update({wait_time: 0})
+            .then(()=>{
+              knex.select('phone_number')
+                .from('users')
+                .where('orders.id', orderID)
+                .innerJoin('orders', 'users.id', 'orders.user_id')
+                .then((result) => {
+                  const customerPhoneNumber = '+' + result[0]['phone_number'];
+                  console.log('Phone number ' + customerPhoneNumber);
+                  sendSMS(customerPhoneNumber, message);
+                });
+            });
+        } else {
+          message = `order id: ${orderID}, new approx. wait time: ${waitTime} minutes`;
+          console.log('Message is: ', message);
+          knex('orders')
+            .where('id', orderID)
+            .update({wait_time: Number(waitTime)})
+            .then(()=>{
+              knex.select('phone_number')
+                .from('users')
+                .where('orders.id', orderID)
+                .innerJoin('orders', 'users.id', 'orders.user_id')
+                .then((result) => {
+                  const customerPhoneNumber = '+' + result[0]['phone_number'];
+                  console.log('Phone number ' + customerPhoneNumber);
+                  sendSMS(customerPhoneNumber, message);
+                });
+            });
+          res.sendStatus(200);
+        }
+      })
+
+
+
   });
   return router;
 };
