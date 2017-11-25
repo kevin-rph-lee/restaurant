@@ -11,6 +11,17 @@ const twilioNumber = '+16046708301';
 
 module.exports = (knex) => {
 
+  function sendSMS(to, message){
+    client.messages.create({
+      from: twilioNumber,
+      to: to,
+      body: message
+    }, (error, message) => {
+      console.log('Sent message... i hope');
+    });
+  }
+
+
   router.get('/:id', (req, res) => {
     knex.select('orders.id', 'menu_items.name', 'ordered_items.quantity', 'menu_items.price', 'orders.wait_time')
       .from('orders')
@@ -70,27 +81,17 @@ module.exports = (knex) => {
         });
       }).then((order_id) => {
         console.log('about to send text message');
-        client.messages.create({
-          from: twilioNumber,
-          to: restaurantNumber,
-          body: `Order ID ${order_id} Burgers ${req.body.burgers} Fries ${req.body.fries} Shakes ${req.body.shakes}`
-        }, (error, message) => {
-          knex.select('phone_number')
+        sendSMS(restaurantNumber, `Order ID ${order_id} Burgers ${req.body.burgers} Fries ${req.body.fries} Shakes ${req.body.shakes}`);
+        knex.select('phone_number')
             .from('users')
             .where('orders.id', Number(order_id))
             .innerJoin('orders', 'users.id', 'orders.user_id')
             .then((result) => {
               const customerPhoneNumber = '+' + result[0]['phone_number'];
               console.log('Phone number ' + customerPhoneNumber);
-              client.messages.create({
-                from: twilioNumber,
-                to: customerPhoneNumber,
-                body: `Your order id is: ${order_id}`
-              }, (error, message) => {
-                console.log('Sent message... i hope');
-              });
+              sendSMS(customerPhoneNumber, `Your order id is: ${order_id}`);
             });
-        });
+
         res.json(order_id);
       })
       .catch(error => {
@@ -105,14 +106,14 @@ module.exports = (knex) => {
    */
   router.post('/SMS', (req, res) => {
     console.log('Recieving SMS message');
-    const twiml = new MessagingResponse();
+    // const twiml = new MessagingResponse();
     const body = req.body['Body'].split(' ');
     console.log('ID: ' + body[0] + ' Time: ' + body[1]);
     const orderID = body[0];
     const waitTime = body[1];
     let message = 'Default message';
     if(waitTime === 'ready'){
-      message = `Your order: ${orderID} is ready.`;
+      message = `Your order: ${orderID} is ready to pickup.`;
       console.log('Message is: ', message);
       knex('orders')
         .where('id', orderID)
@@ -125,17 +126,11 @@ module.exports = (knex) => {
             .then((result) => {
               const customerPhoneNumber = '+' + result[0]['phone_number'];
               console.log('Phone number ' + customerPhoneNumber);
-              client.messages.create({
-                from: twilioNumber,
-                to: customerPhoneNumber,
-                body: message
-              }, (error, message) => {
-                console.log('Sent message... i hope');
-              });
+              sendSMS(customerPhoneNumber, message);
             });
         });
     } else {
-      message =  `order id: ${orderID}, new wait time: ${waitTime}`;
+      message = `order id: ${orderID}, new approx. wait time: ${waitTime} minutes`;
       console.log('Message is: ', message);
       knex('orders')
         .where('id', orderID)
@@ -148,18 +143,12 @@ module.exports = (knex) => {
             .then((result) => {
               const customerPhoneNumber = '+' + result[0]['phone_number'];
               console.log('Phone number ' + customerPhoneNumber);
-              client.messages.create({
-                from: twilioNumber,
-                to: customerPhoneNumber,
-                body: message
-              }, (error, message) => {
-                console.log('Sent message... i hope');
-              });
+              sendSMS(customerPhoneNumber, message);
             });
         });
-      twiml.message('Message recieved');
-      res.writeHead(200, {'Content-Type': 'text/xml'});
-      res.end(twiml.toString());
+      // twiml.message('Message recieved');
+      // res.writeHead(200, {'Content-Type': 'text/xml'});
+      res.sendStatus(200);
     }
   });
   return router;
