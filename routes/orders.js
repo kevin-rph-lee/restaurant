@@ -112,7 +112,21 @@ module.exports = (knex) => {
     const orderID = body[0];
     const waitTime = body[1];
     let message = 'Default message';
-    if(waitTime === 'ready'){
+
+    knex.select('id')
+      .from('orders')
+      .then((result) => {
+
+      });
+
+
+
+
+    if(body[1] === undefined){
+      sendSMS(restaurantNumber, 'Incorrect message format: please send messages like <ORDER ID> <Wait time/Ready>');
+    } else if
+
+    } else if (waitTime === 'ready'){
       message = `Your order: ${orderID} is ready to pickup.`;
       console.log('Message is: ', message);
       knex('orders')
