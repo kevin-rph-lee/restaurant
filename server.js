@@ -53,7 +53,7 @@ app.use("/menu_items", menuItemsRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {output : undefined});
 });
 
 app.use(cookieSession({
