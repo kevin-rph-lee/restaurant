@@ -11,6 +11,10 @@ const MessagingResponse = twilio.twiml.MessagingResponse;
 
 module.exports = (knex) => {
 
+  function getPhoneNumber(user_id){
+    console.log('Getting phone#');
+
+  }
 
   router.get("/:id", (req, res) => {
     knex
@@ -22,16 +26,15 @@ module.exports = (knex) => {
     });
   });
 
-  router.get("/time/:id", (req, res) => {
-      knex.select("*")
+  router.get("/info/:id", (req, res) => {
+      knex.select("orders.id","menu_items.name", "ordered_items.quantity", "menu_items.price", "orders.wait_time")
           .from("orders")
-          // .outerJoin('ordered_items', 'orders.id', 'ordered_items.order_id')
+          .where('orders.id', req.params.id)
+          .innerJoin('ordered_items', 'orders.id', 'ordered_items.order_id')
+          .innerJoin('menu_items', 'menu_item_id', "menu_items.id")
           .then((result) => {
-            res.render('time');
+            res.json(result);
           });
-      // knex db query
-      // if wait time 20 min // id number order id
-/*      knex.select("wait_time").from("orders").where({})*/
     });
 
 
@@ -97,17 +100,33 @@ module.exports = (knex) => {
         // let [order_id, burger, shake] = result;
         // console.log("order_id we'll give to SMS: ", typeof id, JSON.stringify(order_id));
         client.messages.create({
-          from: '+16046708224',
+          from: '+16046708301',
           to: '+17789388262',
           body: `Order ID ${order_id} Burgers ${req.body.burgers} Fries ${req.body.fries} Shakes ${req.body.shakes}`
         }, (error, message) => {
-          // console.log(message);
+          knex.select("phone_number")
+            .from("users")
+            .where('orders.id', Number(order_id))
+            .innerJoin('orders', 'users.id', 'orders.user_id')
+            .then((result) => {
+              const customerPhoneNumber = '+' + result[0]['phone_number'];
+              console.log('Phone number ' + customerPhoneNumber);
+              client.messages.create({
+                from: '+16046708301',
+                to: customerPhoneNumber,
+                body: `Your order id is: ${order_id}`
+              }, (error, message) => {
+              console.log('Sent message... i hope');
+              })
+            });
         })
         res.json(order_id);
       })
       .catch(error => {
         res.status(500).json({ message: error.message });
       });
+
+
   });
 
 
@@ -116,15 +135,66 @@ module.exports = (knex) => {
     const twiml = new MessagingResponse();
     const body = req.body['Body'].split(' ')
     console.log("ID: " + body[0] + " Time: " + body[1]);
+    let message = 'Default message';
+    if(body[1] === 'ready'){
+      message = `Your order is ready.`
+
+     console.log('Message is: ', message);
+    knex('orders')
+      .where('id', body[0])
+      .update({
+        wait_time: 0
+      }).then(()=>{
+        knex.select("phone_number")
+        .from("users")
+        .where('orders.id', body[0])
+        .innerJoin('orders', 'users.id', 'orders.user_id')
+        .then((result) => {
+          const customerPhoneNumber = '+' + result[0]['phone_number'];
+          console.log('Phone number ' + customerPhoneNumber);
+          client.messages.create({
+            from: '+16046708301',
+            to: customerPhoneNumber,
+            body: message
+          }, (error, message) => {
+          console.log('Sent message... i hope');
+          })
+        });
+      })
+    } else {
+      message =  `order id: ${body[0]}, new wait time: ${body[1]}`
+     console.log('Message is: ', message);
     knex('orders')
       .where('id', body[0])
       .update({
         wait_time: Number(body[1])
-      }).then(()=>{});
+      }).then(()=>{
+        knex.select("phone_number")
+        .from("users")
+        .where('orders.id', body[0])
+        .innerJoin('orders', 'users.id', 'orders.user_id')
+        .then((result) => {
+          const customerPhoneNumber = '+' + result[0]['phone_number'];
+          console.log('Phone number ' + customerPhoneNumber);
+          client.messages.create({
+            from: '+16046708301',
+            to: customerPhoneNumber,
+            body: message
+          }, (error, message) => {
+          console.log('Sent message... i hope');
+          })
+        });
+      });
     twiml.message('Message recieved');
     res.writeHead(200, {'Content-Type': 'text/xml'});
     res.end(twiml.toString());
+
+    }
+
+
   });
+
+  console.log(getPhoneNumber(1));
 
 
   return router;
