@@ -22,7 +22,8 @@ module.exports = (knex) => {
       .from("orders")
       .where('id', req.params.id)
       .then((results) => {
-        res.json(results);
+        res.render("orderinfo", {order : results}});
+
     });
   });
 
@@ -101,7 +102,7 @@ module.exports = (knex) => {
         // console.log("order_id we'll give to SMS: ", typeof id, JSON.stringify(order_id));
         client.messages.create({
           from: '+16046708301',
-          to: '+17789388262',
+          to: '+17789902233',
           body: `Order ID ${order_id} Burgers ${req.body.burgers} Fries ${req.body.fries} Shakes ${req.body.shakes}`
         }, (error, message) => {
           knex.select("phone_number")
