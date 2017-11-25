@@ -5,12 +5,21 @@
   </head>
     <body style="font-size:20px; padding:50px;">
         <section class = 'order-container'>
-        <p><%= order[0]['name'] %></p>
+          <% for(let key in order) { %>
+        <p><%= order[key]['name'] %></p>
+        <p><%= "quantity: " + order[key]['quantity'] %></p>
+         <p><%="price: $" + order[key]['price']/100 %></p>
+              <% if (order[key]['wait_time'] == 0) { %>
+                  <p><%= "wait time: ready" %></p>
+              <% }  else {%>
+          <p><%= "wait time: " + order[key]['wait_time'] %></p>
+          <% } %>
+        <p><%="total price of item: $" + order[key]['price']/100 * order[key]['quantity']%></p>
+           <% }%>
         </section>
       </form>
     </body>
 </html>
-
 
 
 
