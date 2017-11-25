@@ -44,19 +44,35 @@ $(() => {
   });
 
   $('.submit-order').on('click', function(event) {
-    $.ajax({
-      method: "POST",
-      url: "/orders/",
-      data: {'burgers': $('#burger_quantity').val(),
-        'fries': $('#fries_quantity').val(),
-        'shakes': $('#shakes_quantity').val()
-      }
-    });
+    const $burgerQuantity = $('#burger_quantity').val();
+    const $friesQuantity = $('#fries_quantity').val();
+    const $shakesQuantity = $('#shakes_quantity').val();
+
+    if ($burgerQuantity == 0 && $friesQuantity == 0 && $shakesQuantity == 0) {
+      alert('Cannot be 0');
+    }
+
+
     $('#burger_quantity').val('0');
     $('#fries_quantity').val('0');
     $('#shakes_quantity').val('0');
   });
+
+  function renderPrices(){
+    $.ajax({
+      url: '/menu_items',
+      method: 'GET'
+    }).done((prices) => {
+      $('.burger-price').text("$ " + prices[0]['price']/100);
+      $('.fries-price').text("$ " + prices[1]['price']/100);
+      $('.shakes-price').text("$ " +prices[2]['price']/100);
+    })
+  }
+
+  renderPrices();
+
 });
+
 
 
 
