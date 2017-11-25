@@ -9,11 +9,13 @@
         <p><%= order[key]['name'] %></p>
         <p><%= "quantity: " + order[key]['quantity'] %></p>
          <p><%="price: $" + order[key]['price']/100 %></p>
-              <% if (order[key]['wait_time'] == 0) { %>
-                  <p><%= "wait time: ready" %></p>
-              <% }  else {%>
-          <p><%= "wait time: " + order[key]['wait_time'] %></p>
-          <% } %>
+          <% if (order[key]['wait_time'] == 0) { %>
+              <p><%= "wait time: ready" %></p>
+              <% }  else if (order[key]['wait_time'] == null) {%>
+          <p><%= "wait time: unknown" %></p>
+          <% } else { %>
+             <p><%= "wait time: " + order[key]['wait_time']%></p>
+             <% }%>
         <p><%="total price of item: $" + order[key]['price']/100 * order[key]['quantity']%></p>
            <% }%>
         </section>

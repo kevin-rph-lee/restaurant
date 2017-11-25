@@ -68,7 +68,7 @@ module.exports = (knex) => {
     console.log('fries: ' + req.body.fries);
     console.log('shakes: ' + req.body.shakes);
     knex
-      .insert({user_id: 1, wait_time: 0})
+      .insert({user_id: 1, wait_time: null})
       .into("orders")
       .returning('id')
       .then(order_id => {
