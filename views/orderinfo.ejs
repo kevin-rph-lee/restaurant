@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/orderinfo.css" type="text/css"/>
     <title>Time</title>
   </head>
-    <body style="font-size:20px; padding:50px;">
+    <body>
+       <div class="container">
+        <h1>Hi! You Ordered the Following </h1>
+       </div>
         <section class = 'order-container'>
           <% for(let key in order) { %>
         <p><%= order[key]['name'] %></p>
         <p><%= "quantity: " + order[key]['quantity'] %></p>
          <p><%="price: $" + order[key]['price']/100 %></p>
+           <p><%="total price of item: $" + order[key]['price']/100 * order[key]['quantity']%></p>
           <% if (order[key]['wait_time'] == 0) { %>
-              <p><%= "wait time: ready" %></p>
+              <div><p><%= "wait time: ready" %></p></div>
               <% }  else if (order[key]['wait_time'] == null) {%>
-          <p><%= "wait time: unknown" %></p>
+          <b><p><%= "wait time: unknown" %></p><b>
           <% } else { %>
-             <p><%= "wait time: " + order[key]['wait_time']%></p>
+            <em> <p><%= "wait time: " + order[key]['wait_time']%></p> </em>
              <% }%>
-        <p><%="total price of item: $" + order[key]['price']/100 * order[key]['quantity']%></p>
            <% }%>
         </section>
       </form>

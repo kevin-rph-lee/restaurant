@@ -3,6 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('user_id');
     table.integer('wait_time');
+    table.string('customer_notes');
   });
 };
 
