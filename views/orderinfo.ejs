@@ -3,27 +3,49 @@
   <head>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/orderinfo.css" type="text/css"/>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Hind+Siliguri" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
+
     <title>Time</title>
   </head>
     <body>
-       <div class="container">
-        <h1>Hi! You Ordered the Following </h1>
-       </div>
+       <header class="container">
+        Order Information for
+       </header>
         <section class = 'order-container'>
+          <table class="Table">
           <% for(let key in order) { %>
-        <p><%= order[key]['name'] %></p>
-        <p><%= "quantity: " + order[key]['quantity'] %></p>
-         <p><%="price: $" + order[key]['price']/100 %></p>
-           <p><%="total price of item: $" + order[key]['price']/100 * order[key]['quantity']%></p>
-          <% if (order[key]['wait_time'] == 0) { %>
-              <div><p><%= "wait time: ready" %></p></div>
-              <% }  else if (order[key]['wait_time'] == null) {%>
-          <b><p><%= "wait time: unknown" %></p><b>
-          <% } else { %>
-            <em> <p><%= "wait time: " + order[key]['wait_time']%></p> </em>
-             <% }%>
+          <tr>
+
+        <td id="nameid"><%= order[key]['name'] %></td>
+        <td id="quantityid"><%= "quantity: " + order[key]['quantity'] %></td>
+         <td id="priceid"><%="price per item : $" + order[key]['price']/100 %></td>
+           <td id="pricetotalitem"><%="total: $" + order[key]['price']/100 * order[key]['quantity']%></td>
+         <!-- <% if (order[key]['wait_time'] == 0) { %>
+        <td id="ready"><%= "wait time: ready" %></td>
+            <% }  else if (order[key]['wait_time'] == null) {%>
+        <td id="unknown"><%= "wait time: unknown" %></td>
+        <% } else { %>
+        <td id="wait"><%= "wait time: " + order[key]['wait_time']%></td>
+           <% }%> -->  <% }%>
+         </tr>
+       </table>
+     </section>
+             <% if (order['wait_time'] == 0) { %>
+                      <div class="wait-time"> Wait time: <span class = 'ready'> Ready </span></div>
+             <% }  else if (order['wait_time'] == null) {%>
+                      <div class="wait-time"> Wait time: <span class = 'unknown'>Unknown</span></div>
+                      <% } else { %>
+                      <div class="wait-time"> Wait time: <span class = 'pending'><%= order['wait_time']%></span></div>
+
            <% }%>
-        </section>
+           <div id="totaled"><%="total purchase price: $" + totalPrice/100 %></div>
+        <form action="/" method="GET" >
+        <input type="submit" value="return"
+         name="Submit" class="return-button" />
+      </form>
+
       </form>
     </body>
 </html>
