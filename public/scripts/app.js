@@ -50,6 +50,18 @@ $(() => {
 
     if ($burgerQuantity == 0 && $friesQuantity == 0 && $shakesQuantity == 0) {
       alert('Cannot be 0');
+    } else {
+      $.ajax({
+        url: '/orders',
+        method: 'POST',
+        data: {
+          burgers: $burgerQuantity,
+          fries: $friesQuantity,
+          shakes: $shakesQuantity
+        }
+      }).done((prices) => {
+
+      })
     }
 
 

@@ -40,7 +40,7 @@ module.exports = (knex) => {
           totalPrice += results[i]['paid_price'];
         }
         // console.log('Total Price: ' + totalPrice);
-        res.render('orderinfo', {order: result, totalPrice: totalPrice});
+        res.render('orderinfo', {order: results, totalPrice: totalPrice});
         // res.json(results);
       });
   });
