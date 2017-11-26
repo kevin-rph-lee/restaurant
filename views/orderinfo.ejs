@@ -10,19 +10,24 @@
         <h1>Hi! You Ordered the Following </h1>
        </div>
         <section class = 'order-container'>
+          <table class="Table">
           <% for(let key in order) { %>
-        <p><%= order[key]['name'] %></p>
-        <p><%= "quantity: " + order[key]['quantity'] %></p>
-         <p><%="price: $" + order[key]['price']/100 %></p>
-           <p><%="total price of item: $" + order[key]['price']/100 * order[key]['quantity']%></p>
+          <tr>
+
+        <td id="nameid"><%= order[key]['name'] %></td>
+        <td id="quantityid"><%= "quantity: " + order[key]['quantity'] %></td>
+         <td id="priceid"><%="price: $" + order[key]['price']/100 %></td>
+           <td id="pricetotalitem"><%="total amount paid for item: $" + order[key]['price']/100 * order[key]['quantity']%></td>
           <% if (order[key]['wait_time'] == 0) { %>
-              <div><p><%= "wait time: ready" %></p></div>
+          <td id="ready"><%= "wait time: ready" %></td>
               <% }  else if (order[key]['wait_time'] == null) {%>
-          <b><p><%= "wait time: unknown" %></p><b>
+          <td id="unknown"><%= "wait time: unknown" %></td>
           <% } else { %>
-            <em> <p><%= "wait time: " + order[key]['wait_time']%></p> </em>
-             <% }%>
+          <td id="wait"><%= "wait time: " + order[key]['wait_time']%></td>
+             <% }%><div>
            <% }%>
+         </tr>
+           <div id="totaled"><%="total purchase price: $" + totalPrice/100 %></div>
         </section>
       </form>
     </body>
