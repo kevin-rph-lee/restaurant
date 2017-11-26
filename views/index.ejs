@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
@@ -28,11 +30,9 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="page-header">
+   <header class="container">
         <h1>Responsive Restaurant</h1>
-      </div>
-    </div>
+    </header>
   <p>
     <div class="container">
     <div class="row">
@@ -64,6 +64,7 @@
         </div>
       </div>
 
+      <div class="row">
       <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
         <div class="thumbnail">
           <img src="https://i.imgur.com/Pd8aqwo.png">
@@ -73,7 +74,7 @@
             <h1><div class= "fries-price"></div><h1>
               <div class="row">
               <div class="col-lg-6 col-lg-offset-3">
-                <div class="input-group">
+                <div class="input-group increment-btn">
                 <span class="input-group-btn">
                   <button type="button" class="quantity-left-minus btn btn-danger btn-number friesRemove"  data-type="minus" data-field="">
                     <span class="glyphicon glyphicon-minus"></span>
@@ -92,16 +93,18 @@
         </div>
       </div>
 
+
+      <div class="row">
       <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
         <div class="thumbnail">
-          <img src="https://s3-media3.fl.yelpcdn.com/bphoto/Wbm8pTmvnI15wNvP0NweQg/o.jpg">
+          <img src="http://www.thebraggingmommy.com/wp-content/uploads/2015/10/unnamed-2.png">
           <div class="caption">
             <h3>SHAKES</h3>
             <p>Yummmmmy!</p>
             <h1><div class= "shakes-price"></div></h1>
               <div class="row">
               <div class="col-lg-6 col-lg-offset-3">
-                <div class="input-group">
+                <div class="input-group increment-btn">
                 <span class="input-group-btn">
                   <button type="button" class="quantity-left-minus btn btn-danger btn-number shakesRemove"  data-type="minus" data-field="">
                     <span class="glyphicon glyphicon-minus"></span>
@@ -121,14 +124,15 @@
       </div>
     </div>
     </div>
+
     <div class="container">
     <textarea id="customer-notes" name="text" placeholder="Notes to the chef!"></textarea>
-    <button type="button" class="btn btn-success submit-order">Submit</button>
+    <button type="button" class="btn submit-order">Submit</button>
     </div>
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <div class="bottom-bar">
+      All Rights Reserved © 2017 | <a href="">Privacy Policy</a> | <a href="">Terms of Service</a>
+    </div>
 
   </body>
 </html>
