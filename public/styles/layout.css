@@ -1,0 +1,90 @@
+body {
+  background-color: wheat;
+}
+
+
+body h3 {
+  color: #244751 ;
+  text-align: center;
+}
+
+
+body p {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  /*text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;*/
+}
+
+header {
+  font-family: 'Lobster', cursive;
+  font-size:30px;
+}
+
+/*.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+}*/
+
+.thumbnail .caption {
+    padding: 9px;
+    color: #333;
+    height: 195px;
+}
+
+body .thumbnail {
+  display: block;
+  border-radius: 10px;
+}
+
+body .thumbnail > img {
+  margin-right: auto;
+  margin-left: auto;
+  width: 350px;
+  height: 300px;
+}
+
+
+#customer-notes {
+  display: block;
+  margin:50px auto;
+  text-align: center;
+  border-radius: 5px;
+
+}
+
+.bottom-bar {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #B09F80;
+    color: white;
+    text-align: right;
+}
+
+
+
+
+.submit-order {
+
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-color: black;
+    border-radius: 10px;
+    border-width: 5px;
+    margin: auto;
+    margin-bottom: 50px;
+    text-align: center;
+    opacity: 0.5;
+    display: block;
+}
+
+.submit-order:hover
+{
+  opacity: 2.0;
+}
