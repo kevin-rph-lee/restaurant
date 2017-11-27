@@ -19,8 +19,8 @@
           <tr>
             <td id="nameid"><%= order[key]['name'] %></td>
             <td id="quantityid"><%= "quantity: " + order[key]['quantity'] %></td>
-            <td id="priceid"><%="price per item : $" + order[key]['price']/100 %></td>
-            <td id="pricetotalitem"><%="total: $" + order[key]['price']/100 * order[key]['quantity']%></td>
+            <td id="priceid"><%="price per item : $" + order[key]['paid_price']/100 %></td>
+            <td id="pricetotalitem"><%="total: $" + order[key]['paid_price']/100 * order[key]['quantity']%></td>
             <% }%>
           </tr>
         </table>
