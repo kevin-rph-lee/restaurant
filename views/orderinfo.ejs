@@ -17,27 +17,20 @@
           <table class="Table">
           <% for(let key in order) { %>
           <tr>
-
         <td id="nameid"><%= order[key]['name'] %></td>
         <td id="quantityid"><%= "quantity: " + order[key]['quantity'] %></td>
          <td id="priceid"><%="price per item : $" + order[key]['price']/100 %></td>
            <td id="pricetotalitem"><%="total: $" + order[key]['price']/100 * order[key]['quantity']%></td>
-         <!-- <% if (order[key]['wait_time'] == 0) { %>
-        <td id="ready"><%= "wait time: ready" %></td>
-            <% }  else if (order[key]['wait_time'] == null) {%>
-        <td id="unknown"><%= "wait time: unknown" %></td>
-        <% } else { %>
-        <td id="wait"><%= "wait time: " + order[key]['wait_time']%></td>
-           <% }%> -->  <% }%>
+            <% }%>
          </tr>
        </table>
      </section>
-             <% if (order['wait_time'] == 0) { %>
+             <% if (order[0]['wait_time'] == 0) { %>
                       <div class="wait-time"> Wait time: <span class = 'ready'> Ready </span></div>
-             <% }  else if (order['wait_time'] == null) {%>
+             <% }  else if (order[0]['wait_time'] === null) {%>
                       <div class="wait-time"> Wait time: <span class = 'unknown'>Unknown</span></div>
                       <% } else { %>
-                      <div class="wait-time"> Wait time: <span class = 'pending'><%= order['wait_time']%></span></div>
+                      <div class="wait-time"> Wait time: <span class = 'pending'><%= order[0]['wait_time']%></span></div>
 
            <% }%>
            <div id="totaled"><%="total purchase price: $" + totalPrice/100 %></div>
