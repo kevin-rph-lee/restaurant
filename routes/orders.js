@@ -121,6 +121,7 @@ module.exports = (knex) => {
         }
         //updating DB
         knex
+        //for development purposes only, we are manually submitting orders as user ID 1.
           .insert({user_id: 1, wait_time: null, customer_notes: customerNotes})
           .into('orders')
           .returning('id')
