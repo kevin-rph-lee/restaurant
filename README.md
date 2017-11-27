@@ -1,19 +1,12 @@
-
 # Midterm Project
-
-Tweeter is a simple, single-page Twitter clone.
-
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+A two page full-stack food ordering experience for a single restaurant., select one or more dishes and place an order for pick-up. When an order is placed the restaurant receives the order via SMS. The restaurant can specify how long it will take to fulfill it. Once they provide this information, the website updates for the customer and also notifies them via SMS.
 
 ## Getting Started
-
 1. Fork this repository, then clone your fork of this repository.
 2. Install dependencies using the `npm install` command.
 3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
 4. Go to <http://localhost:8080/> in your browser.
-
 ## Dependencies
-
 - Body-paser
 - Cookie-session
 - Dotenv
@@ -29,5 +22,8 @@ This repository is the starter code for the project: Students will fork and clon
 - PostgreSQL
 - Twilio
 
-
 ## Screenshots
+!["Screenshot of ordered info"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/orderedInfo.png)
+!["Screenshot of placed order"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/placingOrder.png)
+!["Screenshot of time +ready+ +priceChange"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/TimePlusReadyPlusPriceChange.jpg)
+!["Screenshot of Home page"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/homePageOfRestaurant.png)
