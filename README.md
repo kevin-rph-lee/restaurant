@@ -28,3 +28,10 @@ A two page full-stack food ordering experience for a single restaurant., select 
 
 
 ## Screenshots
+!["Screenshot of ordered info"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/orderedInfo.png)
+
+!["Screenshot of placed order"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/placingOrder.png)
+
+!["Screenshot of time +ready+ +priceChange"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/TimePlusReadyPlusPriceChange.jpg)
+
+!["Screenshot of Home page"](https://raw.githubusercontent.com/conniechoi89/midterm/master/docs/homePageOfRestaurant.png)
