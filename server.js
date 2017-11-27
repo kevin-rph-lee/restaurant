@@ -51,11 +51,6 @@ app.use("/orders", ordersRoutes(knex));
 app.use("/ordered_items", orderedItemsRoutes(knex));
 app.use("/menu_items", menuItemsRoutes(knex));
 
-// Home page
-app.get("/", (req, res) => {
-  res.render("index", {output : undefined});
-});
-
 app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2'],
@@ -63,7 +58,7 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000
 }));
 
-
+//Psuedo-login for development purposes ONLY.
 if(ENV === 'development') {
   app.get("/login/:id", (request, response) => {
     request.session.user_id = request.params.id;
@@ -71,6 +66,7 @@ if(ENV === 'development') {
   })
 }
 
+//Psuedo-logout for development purposes ONLY.
 if(ENV === 'development') {
   app.get("/logout", (request, response) => {
     request.session.user_id = null;
@@ -78,6 +74,10 @@ if(ENV === 'development') {
   })
 }
 
+// Home page
+app.get("/", (req, res) => {
+  res.render("index", {output : undefined});
+});
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
