@@ -3,9 +3,8 @@ section ul {
   color: blue;
 }
 
-
 body header {
-  text-shadow:   1px 0px #eee, 0px 1px #ccc,
+  text-shadow: 1px 0px #eee, 0px 1px #ccc,
                2px 1px #eee, 1px 2px #ccc,
                3px 2px #eee, 2px 3px #ccc,
                4px 3px #eee, 3px 4px #ccc,
@@ -15,6 +14,7 @@ body header {
   padding: 50px 0px 50px 0px;
   font-size: 50px;
 }
+
 body {
   background-color: wheat;
   padding: 0px;
@@ -35,7 +35,8 @@ body {
   box-shadow: 0 6px #999;
 }
 
-.return-button:hover {background-color: #3e8e41}
+.return-button:hover {
+  background-color: #3e8e41}
 
 .return-button:active {
   background-color: #3e8e41;
@@ -66,21 +67,19 @@ form {
   margin-right: 3em;
   padding-left: 100px;
 /*   padding-left: 360px; */
-    border-style: solid;
-    border-width: 10px;
-       padding: 15px;
-    border-radius: 5px;
-    background-size: contain;
-     border-collapse: collapse;
-     background-color:#f5f5dc;
-
+  border-style: solid;
+  border-width: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  background-size: contain;
+  border-collapse: collapse;
+  background-color:#f5f5dc;
 }
-
-
 
 strong {
   padding-top: 400px
 }
+
 #nameid {
   padding-right: 50px;
   padding-top: 30px;
@@ -91,58 +90,59 @@ strong {
 #quantityid {
   padding-right: 50px;
   padding-top: 30px;
-    font-size: 20px;
-font-family: 'Josefin Slab', serif;
+  font-size: 20px;
+  font-family: 'Josefin Slab', serif;
 }
 #priceid {
+  font-family: 'Josefin Slab', serif;
+  font-size: 20px;
   padding-right: 50px;
   padding-top: 30px;
-    font-size: 20px;
-  font-family: 'Josefin Slab', serif;
 }
 
 #unknown {
+  font-family: 'Lobster', cursive;
+  font-size: 50px;
   padding-left: 500px;
   padding-top: 30px;
-    font-size: 50px;
-  text-shadow:   1px 0px #eee, 0px 1px #ccc,
+  text-shadow: 1px 0px #eee, 0px 1px #ccc,
                2px 1px #eee, 1px 2px #ccc,
                3px 2px #eee, 2px 3px #ccc,
                4px 3px #eee, 3px 4px #ccc,
                4px 4px #eee;
-                font-family: 'Lobster', cursive;
 }
+
 #pricetotalitem {
+  font-family: 'Josefin Slab', serif;
+  font-size: 20px;
   padding-right: 50px;
   padding-top: 30px;
-    font-size: 20px;
-    font-family: 'Josefin Slab', serif;
 }
 
 #totaled {
+  font-family: 'Lobster', cursive;
+  font-size: 50px;
   text-align: left;
   padding-left: 1em;
   padding-top: 5px;
   position:flex;
-  font-size: 50px;
-   text-shadow:   1px 0px #eee, 0px 1px #ccc,
+  text-shadow: 1px 0px #eee, 0px 1px #ccc,
                2px 1px #eee, 1px 2px #ccc,
                3px 2px #eee, 2px 3px #ccc,
                4px 3px #eee, 3px 4px #ccc,
                4px 4px #eee;
-                font-family: 'Lobster', cursive;
 }
 
 .wait-time {
   margin-left: 1em;
   margin-top: 20px;
   font-family: 'Lobster', cursive;
-  text-shadow:   1px 0px #eee, 0px 1px #ccc,
+  font-size: 40px;
+  text-shadow: 1px 0px #eee, 0px 1px #ccc,
                2px 1px #eee, 1px 2px #ccc,
                3px 2px #eee, 2px 3px #ccc,
                4px 3px #eee, 3px 4px #ccc,
                4px 4px #eee;
-  font-size: 40px;
 }
 
 .unknown {
@@ -150,11 +150,21 @@ font-family: 'Josefin Slab', serif;
 }
 
 .pending {
-  color:yellow;
+  color:black;
 }
 
 .ready {
   color:green;
+}
+
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #B09F80;
+  color: white;
+  text-align: right;
 }
 
 

@@ -10,40 +10,38 @@
     <title>Time</title>
   </head>
     <body>
-       <header class="container">
-        Order Information for
-       </header>
-        <section class = 'order-container'>
-          <table class="Table">
+      <header class="container">
+        Order Information for order # <%= id %>
+      </header>
+      <section class = 'order-container'>
+        <table class="Table">
           <% for(let key in order) { %>
           <tr>
-        <td id="nameid"><%= order[key]['name'] %></td>
-        <td id="quantityid"><%= "quantity: " + order[key]['quantity'] %></td>
-         <td id="priceid"><%="price per item : $" + order[key]['price']/100 %></td>
-           <td id="pricetotalitem"><%="total: $" + order[key]['price']/100 * order[key]['quantity']%></td>
+            <td id="nameid"><%= order[key]['name'] %></td>
+            <td id="quantityid"><%= "quantity: " + order[key]['quantity'] %></td>
+            <td id="priceid"><%="price per item : $" + order[key]['price']/100 %></td>
+            <td id="pricetotalitem"><%="total: $" + order[key]['price']/100 * order[key]['quantity']%></td>
             <% }%>
-         </tr>
-       </table>
-     </section>
-             <% if (order[0]['wait_time'] == 0) { %>
-                      <div class="wait-time"> Wait time: <span class = 'ready'> Ready </span></div>
-             <% }  else if (order[0]['wait_time'] === null) {%>
-                      <div class="wait-time"> Wait time: <span class = 'unknown'>Unknown</span></div>
-                      <% } else { %>
-                      <div class="wait-time"> Wait time: <span class = 'pending'><%= order[0]['wait_time']%></span></div>
-
-           <% }%>
-           <div id="totaled"><%="total purchase price: $" + totalPrice/100 %></div>
-        <form action="/" method="GET" >
-        <input type="submit" value="return"
-         name="Submit" class="return-button" />
+          </tr>
+        </table>
+      </section>
+      <% if (order[0]['wait_time'] == 0) { %>
+        <div class="wait-time"> Wait time: <span class = 'ready'> Ready </span></div>
+      <% }  else if (order[0]['wait_time'] === null) {%>
+        <div class="wait-time"> Wait time: <span class = 'unknown'>Unknown</span></div>
+          <% } else { %>
+            <div class="wait-time"> Wait time: <span class = 'pending'><%= order[0]['wait_time']%> minutes</span></div>
+            <% }%>
+            <div id="totaled"><%="total purchase price: $" + totalPrice/100 %></div>
+            <form action="/" method="GET" >
+              <input type="submit" value="return"
+                name="Submit" class="return-button" />
+            </form>
       </form>
 
-      </form>
-
-    <div class="bottom-bar">
+      <div class="bottom-bar">
        Lighthouse Labs midterm Fall © 2017
-    </div>
+      </div>
     </body>
 </html>
 

@@ -10,7 +10,6 @@ const twilioNumber = process.env.TWILIONUMBER;
 
 
 module.exports = (knex) => {
-
   /**
    * Sends a text message
    * @param  {[String]} to      Phone # that the SMS is going to
@@ -72,7 +71,7 @@ module.exports = (knex) => {
           totalPrice += results[i]['paid_price'];
         }
         console.log(results);
-        return res.render('orderinfo', {order: results, totalPrice: totalPrice});
+        return res.render('orderinfo', {order: results, totalPrice: totalPrice, id: req.params.id});
       });
   });
 

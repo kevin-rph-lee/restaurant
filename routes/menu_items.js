@@ -11,9 +11,7 @@ module.exports = (knex) => {
       .from("menu_items")
       .then((results) => {
         res.json(results);
-    });
+      });
   });
-
-
   return router;
-}
+};
