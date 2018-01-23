@@ -95,7 +95,7 @@ $(() => {
   });
 
   //Renders prices recieved from the DB
-  renderPrices();
+  // renderPrices();
 });
 
 
