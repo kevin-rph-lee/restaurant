@@ -2,15 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <!-- <title>Bootstrap 101 Template</title> -->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
 
@@ -19,106 +14,6 @@
   </head>
 
   <body>
-    <header class="container">
-      <h1>Responsive Restaurant</h1>
-    </header>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
-          <div class="thumbnail">
-            <img src="http://pngimg.com/uploads/burger_sandwich/burger_sandwich_PNG4160.png">
-              <div class="caption">
-                <h3>HAMBURGER</h3>
-                <p>Best burgers in town!</p>
-                <h1><div class= "burger-price"></div></h1>
-                <div class="row">
-                  <div class="col-lg-6 col-lg-offset-3">
-                    <div class="input-group increment-btn">
-                      <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number burgerRemove"  data-type="minus" data-field="">
-                          <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                      </span>
-                      <input type="text" id="burger_quantity" name="quantity" class="form-control input-number" value="0" min="0" max="100">
-                        <span class="input-group-btn">
-                          <button type="button" class="quantity-right-plus btn btn-success btn-number burgerAdd" data-type="plus" data-field="">
-                            <span class="glyphicon glyphicon-plus"></span>
-                          </button>
-                        </span>
-                    </div>
-                  </div>
-                </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="row">
-        <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
-          <div class="thumbnail">
-            <img src="https://i.imgur.com/Pd8aqwo.png">
-              <div class="caption">
-                <h3>FRIES</h3>
-                <p>Crispy and freshly fried!</p>
-                <h1><div class= "fries-price"></div><h1>
-                <div class="row">
-                  <div class="col-lg-6 col-lg-offset-3">
-                    <div class="input-group increment-btn">
-                      <span class="input-group-btn">
-                        <button type="button" class="quantity-left-minus btn btn-danger btn-number friesRemove"  data-type="minus" data-field="">
-                          <span class="glyphicon glyphicon-minus"></span>
-                        </button>
-                      </span>
-                      <input type="text" id="fries_quantity" name="quantity" class="form-control input-number" value="0" min="0" max="100">
-                        <span class="input-group-btn">
-                          <button type="button" class="quantity-right-plus btn btn-success btn-number friesAdd" data-type="plus" data-field="">
-                            <span class="glyphicon glyphicon-plus"></span>
-                          </button>
-                        </span>
-                    </div>
-                  </div>
-                </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col-lg-4 col-md-3 col-sm-3 col-xs-3">
-          <div class="thumbnail">
-            <img src="http://www.thebraggingmommy.com/wp-content/uploads/2015/10/unnamed-2.png">
-              <div class="caption">
-                <h3>SHAKES</h3>
-                  <p>With real strawberries!</p>
-                  <h1><div class= "shakes-price"></div></h1>
-              <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
-                  <div class="input-group increment-btn">
-                    <span class="input-group-btn">
-                      <button type="button" class="quantity-left-minus btn btn-danger btn-number shakesRemove"  data-type="minus" data-field="">
-                        <span class="glyphicon glyphicon-minus"></span>
-                      </button>
-                    </span>
-                    <input type="text" id="shakes_quantity" name="quantity" class="form-control input-number" value="0" min="0" max="100">
-                      <span class="input-group-btn">
-                        <button type="button" class="quantity-right-plus btn btn-success btn-number shakesAdd" data-type="plus" data-field="">
-                          <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                      </span>
-                  </div>
-                </div>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-    <div class="container">
-      <textarea id="customer-notes" name="text" placeholder="Notes to the chef!"></textarea>
-      <button type="button" class="btn submit-order">Submit</button>
-    </div>
-    <div class="bottom-bar">
-       Lighthouse Labs midterm Fall © 2017
-    </div>
   </body>
 </html>
