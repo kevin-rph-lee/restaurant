@@ -3,7 +3,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.string('email');
     table.string('phone_number');
-
+    table.string('password');
   });
 };
 
